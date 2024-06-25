@@ -69,3 +69,53 @@ graph TD
     H -->|10| K[Actividades Clave]
     I -->|11| L[Socios Clave]
 ```
+
+## Casos de Uso Principales
+
+### Caso de Uso 1: Publicación de Ofertas de Trabajo
+**Descripción**: El reclutador crea y publica una oferta de trabajo en múltiples plataformas y portales de empleo.
+
+```mermaid
+sequenceDiagram
+    participant R as Reclutador
+    participant ATS as Sistema ATS
+    participant P as Plataformas de Empleo
+
+    R->>ATS: Crear oferta de trabajo
+    ATS-->>R: Confirmación de creación
+    ATS->>P: Publicar oferta de trabajo
+    P-->>ATS: Confirmación de publicación
+    ATS-->>R: Notificación de publicación
+```
+
+### Caso de Uso 2: Filtrado y Clasificación de Candidatos
+**Descripción**: El sistema filtra y clasifica automáticamente a los candidatos según criterios predefinidos.
+
+```mermaid
+sequenceDiagram
+    participant C as Candidato
+    participant ATS as Sistema ATS
+    participant R as Reclutador
+
+    C->>ATS: Enviar solicitud
+    ATS-->>C: Confirmación de recepción
+    ATS->>ATS: Filtrar y clasificar candidatos
+    ATS-->>R: Notificación de candidatos clasificados
+```
+
+### Caso de Uso 3: Programación de Entrevistas
+**Descripción**: El reclutador programa entrevistas con los candidatos seleccionados y envía recordatorios automáticos.
+
+```mermaid
+sequenceDiagram
+    participant R as Reclutador
+    participant ATS as Sistema ATS
+    participant C as Candidato
+
+    R->>ATS: Programar entrevista
+    ATS-->>R: Confirmación de programación
+    ATS->>C: Enviar invitación a entrevista
+    C-->>ATS: Confirmación de asistencia
+    ATS-->>R: Notificación de confirmación
+    ATS->>C: Enviar recordatorio automático
+```
