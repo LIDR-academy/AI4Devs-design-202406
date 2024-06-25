@@ -12,3 +12,15 @@ Me creas tu mismo el diagrama LEAN Canvas en mermaid y me lo adjuntas al LTI-RMT
 
 Describe los 3 casos de uso principales, con el diagrama asociado a cada uno en mermaid
 
+### Prompt 4
+
+Ahora necesito el modelo de datos que cubra entidades, atributos (nombre y tipo) y relaciones
+
+### Prompt 5
+
+Puedes darmelo en ingles? A partir de ahora, todo lo relacionado con codigo o base de datos en inglés, la documentación en castellano como hasta ahora
+
+### Prompt 6
+
+Quiero que me expliques el diseño del sistema a alto nivel y que me lo diagramatices
+
