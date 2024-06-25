@@ -8,3 +8,7 @@ Descríbemelas en un listado, ordenado de mayor a menor prioridad. Aqui una imag
 
 Me creas tu mismo el diagrama LEAN Canvas en mermaid y me lo adjuntas al LTI-RMT/README.md
 
+### Prompt 3
+
+Describe los 3 casos de uso principales, con el diagrama asociado a cada uno en mermaid
+
