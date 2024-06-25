@@ -387,7 +387,7 @@ graph TD;
     E --> I[Motor de IA]
     F --> J[SNS Topic]
     G --> K[API Externa]
-``
+```
 
 ### Diagrama de Código (C4 Nivel 4)
 
@@ -413,6 +413,30 @@ graph TD;
     E --> F
 `
 ```
+
+
+### Explicación de la Arquitectura
+
+1. **Diagrama de Contexto (C4 Nivel 1)**:
+   - Este diagrama muestra a los usuarios clave (reclutadores, candidatos y administradores) interactuando con el ATS.
+   - El ATS está alojado en AWS Cloud y se conecta con servicios externos.
+
+2. **Diagrama de Contenedores (C4 Nivel 2)**:
+   - Este diagrama desglosa el ATS en contenedores principales: Front-End, API Gateway, Back-End, Base de Datos, Servicios de IA, Servicios de Notificación, Servicios de Integración y Almacenamiento de Archivos.
+   - Define las interacciones entre estos contenedores.
+
+3. **Diagrama de Componentes (C4 Nivel 3)**:
+   - Detalla los componentes dentro del Back-End del sistema.
+   - Incluye controladores, servicios y repositorios específicos para manejar usuarios, vacantes, solicitudes y entrevistas.
+   - Muestra los servicios especializados para IA, notificaciones e integraciones.
+
+4. **Diagrama de Código (C4 Nivel 4)**:
+   - Profundiza en el nivel de clase dentro de un controlador específico (Controlador de Vacantes).
+   - Muestra la estructura de clases incluyendo controladores, servicios, repositorios y entidades.
+   - También incluye un ejemplo de cómo se estructura el Servicio de IA.
+
+Estos diagramas proporcionan una visión integral del sistema, desde una vista de alto nivel hasta los detalles específicos de la implementación del código.
+
 
 
 
