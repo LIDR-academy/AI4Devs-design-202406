@@ -234,7 +234,7 @@ graph TD
     subgraph Servicios Externos
         F[Plataformas de Empleo]
         G[Servicios de Correo Electrónico]
-        H[Sistemas de Recursos Humanos (HRIS)]
+        H[HRIS]
     end
 
     A -->|Solicitudes| C
