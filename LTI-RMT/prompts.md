@@ -85,3 +85,6 @@ graph TD
     D -->|Notificaciones| G
     D -->|Sincronización| H
 
+### Prompt 9
+
+Quiero que me hagas un diagrama C4 el caso de uso 1
