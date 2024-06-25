@@ -24,3 +24,7 @@ Puedes darmelo en ingles? A partir de ahora, todo lo relacionado con codigo o ba
 
 Quiero que me expliques el diseño del sistema a alto nivel y que me lo diagramatices
 
+### Prompt 7
+
+Quiero que el diseño sea usando una arquitectura de microservicios, con buenas practicas de desarrollo de estos
+

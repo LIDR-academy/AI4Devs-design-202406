@@ -200,19 +200,24 @@ erDiagram
 ## Diseño del Sistema a Alto Nivel
 
 ### Descripción
-El sistema LTI (Applicant Tracking System) está diseñado para gestionar el proceso de reclutamiento de manera eficiente y colaborativa. A continuación se describen los componentes principales del sistema y sus interacciones:
+El sistema LTI (Applicant Tracking System) está diseñado utilizando una arquitectura de microservicios para gestionar el proceso de reclutamiento de manera eficiente y escalable. A continuación se describen los componentes principales del sistema y sus interacciones:
 
 1. **Frontend**: La interfaz de usuario que interactúa con los reclutadores y candidatos. Incluye:
    - **Portal de Reclutadores**: Donde los reclutadores pueden publicar ofertas de trabajo, gestionar candidatos, programar entrevistas y colaborar con otros miembros del equipo.
    - **Portal de Candidatos**: Donde los candidatos pueden buscar y aplicar a ofertas de trabajo, y seguir el estado de sus aplicaciones.
 
-2. **Backend**: El servidor que maneja la lógica de negocio y las operaciones del sistema. Incluye:
-   - **API REST**: Proporciona endpoints para que el frontend interactúe con el sistema.
-   - **Servicios de Negocio**: Implementan la lógica de negocio, como la gestión de candidatos, ofertas de trabajo, entrevistas, etc.
+2. **Microservicios**: Cada microservicio maneja una funcionalidad específica del sistema. Incluye:
+   - **Servicio de Gestión de Candidatos**: Maneja la creación, actualización y seguimiento de candidatos.
+   - **Servicio de Publicación de Ofertas**: Maneja la creación y publicación de ofertas de trabajo.
+   - **Servicio de Entrevistas**: Maneja la programación y seguimiento de entrevistas.
+   - **Servicio de Notificaciones**: Maneja el envío de correos electrónicos y notificaciones.
+   - **Servicio de Análisis y Reportes**: Genera informes y análisis sobre el proceso de selección.
 
-3. **Base de Datos**: Almacena toda la información relacionada con candidatos, ofertas de trabajo, entrevistas y usuarios del sistema.
+3. **API Gateway**: Actúa como un punto de entrada único para todas las solicitudes del frontend, redirigiéndolas a los microservicios correspondientes.
 
-4. **Servicios Externos**: Integraciones con servicios de terceros, como plataformas de empleo, servicios de correo electrónico, y sistemas de recursos humanos (HRIS).
+4. **Base de Datos**: Cada microservicio tiene su propia base de datos para asegurar la independencia y escalabilidad.
+
+5. **Servicios Externos**: Integraciones con servicios de terceros, como plataformas de empleo, servicios de correo electrónico, y sistemas de recursos humanos (HRIS).
 
 ### Diagrama de Alto Nivel
 ```mermaid
@@ -222,21 +227,45 @@ graph TD
         B[Portal de Candidatos]
     end
 
-    subgraph Backend
-        C[API REST]
-        D[Servicios de Negocio]
+    subgraph API Gateway
+        C[API Gateway]
     end
 
-    subgraph Base de Datos
-        E[(Base de Datos)]
+    subgraph Microservices
+        D[Candidate Management Service]
+        E[Job Posting Service]
+        F[Interview Service]
+        G[Notification Service]
+        H[Analytics and Reporting Service]
     end
 
-    subgraph Servicios Externos
-        F[Plataformas de Empleo]
-        G[Servicios de Correo Electrónico]
-        H[HRIS]
+    subgraph Databases
+        I[(Candidate DB)]
+        J[(Job Posting DB)]
+        K[(Interview DB)]
+        L[(Notification DB)]
+        M[(Analytics DB)]
     end
 
+    subgraph External Services
+        N[Job Platforms]
+        O[Email Services]
+        P[HRIS]
+    end
+
+    A -->|Requests| C
+    B -->|Requests| C
+    C -->|Routes| D
+    C -->|Routes| E
+    C -->|Routes| F
+    C -->|Routes| G
+    C -->|Routes| H
+    D -->|CRUD Operations| I
+    E -->|CRUD Operations| J
+    F -->|CRUD Operations| K
+    G -->|CRUD Operations| L
+    H -->|CRUD Operations| M
+    D -->|Integrations| N
     A -->|Solicitudes| C
     B -->|Solicitudes| C
     C -->|Operaciones| D
