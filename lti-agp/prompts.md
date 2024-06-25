@@ -1,3 +1,4 @@
+chatGPT 4 + diagramGPT
 # 1.
 Eres un experto en producto. Necesitas modelar un sistema ATS (Applicant Tracking System), cuyo objetivo basico es el siguiente:
 
