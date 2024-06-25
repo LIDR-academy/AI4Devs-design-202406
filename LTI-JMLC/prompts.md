@@ -2086,23 +2086,3 @@ Sigue aplicando buenas prácticas para sistemas escalables.
         - **Prometheus**
 
 ![Untitled](resources/Untitled_13.png)
-
----
-
-# ▶️ Fases y entregables
-
-1. Investigación y análisis → Product Manager
-    - [x]  Descripción breve del software LTI
-    - [x]  Valor añadido y ventajas competitivas
-    - [x]  Explicación de las funciones principales
-    - [x]  Diagrama Lean Canvas
-2. Casos de uso
-    - [x]  3 Casos de uso
-    - [x]  Diagramas de cada CU
-3. Modelado de datos
-    - [x]  Diagrama con entidades, atributos (nombre y tipo) y relaciones
-4. Diseño de alto nivel (arquitectura):
-    - [x]  Explicación
-    - [x]  Diagrama
-5. Diagrama C4 de uno de los componentes del sistema
-    - [ ]  Diagrama C4 de un componente
