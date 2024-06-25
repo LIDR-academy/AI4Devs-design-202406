@@ -221,3 +221,77 @@ El sistema LTI (Applicant Tracking System) está diseñado utilizando una arquit
 
 ### Diagrama de Alto Nivel
 ![Diagrama de Alto Nivel](diagram.png)
+
+## Diagrama C4 para el Caso de Uso 1: Publicación de Ofertas de Trabajo
+
+### Diagrama de Contexto
+```mermaid
+graph TD
+    User[Reclutador] -->|Crea Oferta de Trabajo| APIGateway
+    APIGateway -->|Redirige Solicitud| JobPostingService
+    JobPostingService -->|Almacena Oferta de Trabajo| JobPostingDB
+    JobPostingService -->|Publica Oferta de Trabajo| JobPlatforms
+```
+
+### Diagrama de Contenedores
+```mermaid
+graph TD
+    subgraph Frontend
+        User[Reclutador]
+    end
+
+    subgraph API Gateway
+        APIGateway
+    end
+
+    subgraph Microservicios
+        JobPostingService
+    end
+
+    subgraph Bases de Datos
+        JobPostingDB[(Base de Datos de Ofertas de Trabajo)]
+    end
+
+    subgraph Servicios Externos
+        JobPlatforms[Plataformas de Empleo]
+    end
+
+    User -->|Crea Oferta de Trabajo| APIGateway
+    APIGateway -->|Redirige Solicitud| JobPostingService
+    JobPostingService -->|Almacena Oferta de Trabajo| JobPostingDB
+    JobPostingService -->|Publica Oferta de Trabajo| JobPlatforms
+```
+
+### Diagrama de Componentes para el Servicio de Publicación de Ofertas
+```mermaid
+graph TD
+    subgraph JobPostingService
+        Controller[Controlador de Publicación de Ofertas]
+        Service[Servicio de Publicación de Ofertas]
+        Repository[Repositorio de Publicación de Ofertas]
+    end
+
+    Controller -->|Recibe Solicitud| Service
+    Service -->|Interactúa con| Repository
+    Repository -->|Almacena Oferta de Trabajo| JobPostingDB[(Base de Datos de Ofertas de Trabajo)]
+    Service -->|Publica Oferta de Trabajo| JobPlatforms[Plataformas de Empleo]
+```
+
+### Diagrama de Código para el Servicio de Publicación de Ofertas
+```mermaid
+classDiagram
+    class JobPostingController {
+        +createJobOffer()
+    }
+
+    class JobPostingService {
+        +createJobOffer()
+    }
+
+    class JobPostingRepository {
+        +save()
+    }
+
+    JobPostingController --> JobPostingService
+    JobPostingService --> JobPostingRepository
+```
