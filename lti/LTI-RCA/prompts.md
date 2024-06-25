@@ -34,4 +34,11 @@ Ofrece el resultado en formato .md
 
 Ahora tambien en formato PlantUML define el modelo de datos. El modelo de datos debe cubrir entidades, atributos (nombre y tipo) y relaciones en un diagrama
 
+# PROMPT 4:
+
+Diseño del sistema a alto nivel y genera un diagrama en formato Mermaid. Ten en cuenta que quiero utilizar AWS como Cloud y añade tambien un script de terraform para generar la infraestructura del sistema. 
+
+# PROMPT 5:
+
+Genera los 4 diagramas C4 explicando la arquitectura del sistema en cuatro niveles: contexto, contenedores, componentes y código.
 
