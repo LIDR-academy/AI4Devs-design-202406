@@ -28,3 +28,60 @@ Quiero que me expliques el diseño del sistema a alto nivel y que me lo diagrama
 
 Quiero que el diseño sea usando una arquitectura de microservicios, con buenas practicas de desarrollo de estos
 
+### Propmt 8
+
+I want to create a diagram based in this mermaid, using AWS technologies
+
+graph TD
+    subgraph Frontend
+        A[Portal de Reclutadores]
+        B[Portal de Candidatos]
+    end
+
+    subgraph API Gateway
+        C[API Gateway]
+    end
+
+    subgraph Microservices
+        D[Candidate Management Service]
+        E[Job Posting Service]
+        F[Interview Service]
+        G[Notification Service]
+        H[Analytics and Reporting Service]
+    end
+
+    subgraph Databases
+        I[(Candidate DB)]
+        J[(Job Posting DB)]
+        K[(Interview DB)]
+        L[(Notification DB)]
+        M[(Analytics DB)]
+    end
+
+    subgraph External Services
+        N[Job Platforms]
+        O[Email Services]
+        P[HRIS]
+    end
+
+    A -->|Requests| C
+    B -->|Requests| C
+    C -->|Routes| D
+    C -->|Routes| E
+    C -->|Routes| F
+    C -->|Routes| G
+    C -->|Routes| H
+    D -->|CRUD Operations| I
+    E -->|CRUD Operations| J
+    F -->|CRUD Operations| K
+    G -->|CRUD Operations| L
+    H -->|CRUD Operations| M
+    D -->|Integrations| N
+    A -->|Solicitudes| C
+    B -->|Solicitudes| C
+    C -->|Operaciones| D
+    D -->|Consultas y Actualizaciones| E
+    D -->|Integraciones| F
+    D -->|Notificaciones| G
+    D -->|Sincronización| H
+
