@@ -383,8 +383,6 @@ classDiagram
 
 Este diagrama muestra las entidades principales del sistema ATS, sus campos más importantes y las relaciones entre ellas, proporcionando una visión clara del modelo de datos.
 
-![Imagen Modelo de datos](images/MER.png)
-
 Para crear un diagrama C4 y profundizar en uno de los componentes del sistema ATS de LTI, seguimos las cuatro capas del modelo C4: Contexto, Contenedores, Componentes y Código.
 
 ### Diagrama de Contexto (C4 Nivel 1)
@@ -399,7 +397,6 @@ graph TD
     Reclutador --> Candidato
     Candidato --> Empresa
 ```
-![Imagen C4 nivel 1](images/C4N1.svg)
 
 ### Diagrama de Contenedores (C4 Nivel 2)
 ```mermaid
@@ -413,7 +410,6 @@ graph TD
     Manager[Manager] --> WebApp
     Candidato[Candidato] --> MobileApp
 ```
-![Imagen C4 nivel 2](images/C4N2.svg)
 
 ### Diagrama de Componentes (C4 Nivel 3)
 Para la Web Application, detallamos los componentes internos:
@@ -442,7 +438,6 @@ graph TD
     Communication --> DB
     Evaluation --> DB
 ```
-![Imagen C4 nivel 3](images/C4N3.png)
 
 ### Diagrama de Código (C4 Nivel 4)
 Profundizando en el componente **Candidate Management Service**:
@@ -499,7 +494,6 @@ classDiagram
     CandidateService --> CandidateData : procesa
     CandidateService --> SearchCriteria : procesa
 ```
-![Imagen C4 nivel 4](images/C4N4.png)
 
 ### Descripción del Componente: Candidate Management Service
 
