@@ -1,4 +1,3 @@
-```markdown
 # **SMART PEOPLE LTI** ![Icon](https://example.com/icon.png)
 
 ## Descripción del Software
@@ -143,7 +142,7 @@ C4Context
     Person(cliente, "Cliente", "Usuario del sistema de ATS")
     System(smart_people_lti, "SMART PEOPLE LTI", "Sistema de seguimiento de candidatos")
 
-    cliente --> smart_people_lti
+    Rel(cliente, smart_people_lti, "Usa")
 ```
 
 ### Nivel 2: Contenedor del Sistema
@@ -155,8 +154,8 @@ C4Container
     Container(smart_people_lti, "SMART PEOPLE LTI", "Aplicación Web", "Sistema de seguimiento de candidatos")
     ContainerDb(base_datos, "Base de Datos", "RDS", "Almacena datos de candidatos y empleos")
 
-    cliente --> smart_people_lti
-    smart_people_lti --> base_datos
+    Rel(cliente, smart_people_lti, "Usa")
+    Rel(smart_people_lti, base_datos, "Lee y Escribe")
 ```
 
 ### Nivel 3: Componente del Sistema
@@ -170,10 +169,10 @@ C4Component
     Component(base_datos, "Base de Datos", "PostgreSQL", "Almacena datos de candidatos y empleos")
     Component(ia_modulo, "Módulo de IA", "TensorFlow", "Optimiza la selección de candidatos")
 
-    cliente --> aplicacion_web
-    aplicacion_web --> api_rest
-    api_rest --> base_datos
-    api_rest --> ia_modulo
+    Rel(cliente, aplicacion_web, "Usa")
+    Rel(aplicacion_web, api_rest, "Consume")
+    Rel(api_rest, base_datos, "Lee y Escribe")
+    Rel(api_rest, ia_modulo, "Provee Datos")
 ```
 
 ### Nivel 4: Diagrama de Código para "Selección de Candidatos"
@@ -187,9 +186,8 @@ C4Component
     Component(base_datos, "Base de Datos", "PostgreSQL", "Almacena datos de candidatos y empleos")
     Component(ia_modulo, "Módulo de IA", "TensorFlow", "Optimiza la selección de candidatos")
 
-    cliente --> aplicacion_web
-    aplicacion_web --> api_rest
-    api_rest --> base_datos
-    api_rest --> ia_modulo
-```
+    Rel(cliente, aplicacion_web, "Usa")
+    Rel(aplicacion_web, api_rest, "Consume")
+    Rel(api_rest, base_datos, "Lee y Escribe")
+    Rel(api_rest, ia_modulo, "Provee Datos")
 ```

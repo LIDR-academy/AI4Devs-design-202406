@@ -14,3 +14,5 @@ Descripción de los 3 casos de uso principales explicando flujos principales, al
 Modelo de datos del sistema que cubra entidades, atributos (nombre y tipo) y relaciones de todo el sistema. Para este punto generar el codigo en Mermaid.
 Diseño del sistema a alto nivel, tanto explicado como diagrama adjunto. Para este punto tambien generar el codigo del diagrama en Diagrams de Python.
 Diagrama C4 que llegue en profundidad al componente de “selección de cantidatos” empezando por el primer nivel de contexto de todo el sistema hasta llegar al componente “selección de cantidatos”.
+
+por favor generame nuevamente el codigo de los diagramas C4 en mermaid usando la funcion Rel.
