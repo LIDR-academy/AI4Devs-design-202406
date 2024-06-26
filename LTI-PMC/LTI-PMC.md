@@ -202,7 +202,7 @@ rectangle "ATS - Sistema de Gestión de Candidatos" {
 - Una **Aplicacion** puede tener muchas **Entrevistas**.
 - Un **Reclutador** o **Manager** (tipo de Usuario) puede participar en muchas **Entrevistas**.
 
-## Esquema de la Base de Datos (dbdiagram.io)
+## Esquema de la Base de Datos
 
 ```plaintext
 Table Usuario {
@@ -257,6 +257,7 @@ Ref: Aplicacion.id_aplicacion > Entrevista.id_aplicacion
 Ref: Usuario.id_usuario > Entrevista.id_usuario
 
 ```
+![Esquema de la Base de Datos](https://drive.google.com/file/d/1lr7uLPbS7kaSprnuzj2KvCbRsMdnujFg/view?usp=drive_link)
 
 # Diseño de Sistema de ATS para LTI
 
@@ -307,7 +308,7 @@ El sistema ATS de LTI estará diseñado utilizando una arquitectura de microserv
 5. **Servicios de Asistencia de IA** proporcionan análisis y recomendaciones, interactuando con otros servicios para obtener y procesar datos.
 6. **Infraestructura y DevOps** aseguran la entrega continua y el monitoreo del sistema, gestionando los contenedores y la infraestructura a través de Kubernetes y herramientas de CI/CD.
 
-## Diagrama de Arquitectura en Mermaid.js
+## Diagrama de Arquitectura
 
 ```mermaid
 graph LR
@@ -366,6 +367,8 @@ graph LR
     Log --> CloudWatch
 
 ```
+![Diagrama de Arquitectura](https://drive.google.com/file/d/1QffmgTxjuZ0ZBTAXRPgW-Gi5WAcvzLku/view?usp=drive_link)
+
 
 ## Diagrama C4
 
@@ -428,3 +431,6 @@ package "ATS - Código y Persistencia" {
 [Microservicio\nAsistencia\nde IA] --> [Cola de Mensajes\nSQS]
 [Microservicio\nAsistencia\nde IA] --> [Almacenamiento de\nArchivos\nS3]
 @enduml
+
+```
+![Diagrama C4](https://drive.google.com/file/d/1HfXWB4B4_0WrllUhQrzaisxpcV3WFEXi/view?usp=drive_link)
