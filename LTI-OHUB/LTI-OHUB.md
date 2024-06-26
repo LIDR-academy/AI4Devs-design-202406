@@ -175,7 +175,7 @@ C4Component
     Rel(api_rest, ia_modulo, "Provee Datos")
 ```
 
-### Nivel 4: Diagrama de Código para "Selección de Candidatos"
+### Nivel 4: Diagrama de Código para "Aplicación Web"
 ```mermaid
 C4Component
     title Aplicación Web de SMART PEOPLE LTI
@@ -189,6 +189,5 @@ C4Component
 
     Rel(controller, service, "Llama")
     Rel(service, repository, "Usa")
-    Rel(repository, base_datos, "Lee y Escribe")
     Rel(service, api_rest, "Consume")
 ```
