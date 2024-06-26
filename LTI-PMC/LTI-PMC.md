@@ -149,7 +149,7 @@ rectangle "ATS - Sistema de Gestión de Candidatos" {
 
 ``` 
 
-![Casos de uso](https://drive.usercontent.google.com/download?id=1lr7uLPbS7kaSprnuzj2KvCbRsMdnujFg&export=view&authuser=0)
+![Casos de uso](https://drive.usercontent.google.com/download?id=1qcMvG4TmphH8tQ4yysqoF7-nr6xxQA5E&export=view&authuser=0)
 
 # Modelo de Datos para el ATS de LTI
 
@@ -257,7 +257,7 @@ Ref: Aplicacion.id_aplicacion > Entrevista.id_aplicacion
 Ref: Usuario.id_usuario > Entrevista.id_usuario
 
 ```
-![Esquema de la Base de Datos](https://drive.google.com/file/d/1lr7uLPbS7kaSprnuzj2KvCbRsMdnujFg/view?usp=drive_link)
+![Esquema de la Base de Datos](https://drive.usercontent.google.com/download?id=1lr7uLPbS7kaSprnuzj2KvCbRsMdnujFg&export=view&authuser=0)
 
 # Diseño de Sistema de ATS para LTI
 
@@ -367,7 +367,7 @@ graph LR
     Log --> CloudWatch
 
 ```
-![Diagrama de Arquitectura](https://drive.google.com/file/d/1QffmgTxjuZ0ZBTAXRPgW-Gi5WAcvzLku/view?usp=drive_link)
+![Diagrama de Arquitectura](https://drive.usercontent.google.com/download?id=1QffmgTxjuZ0ZBTAXRPgW-Gi5WAcvzLku&export=view&authuser=0)
 
 
 ## Diagrama C4
@@ -433,4 +433,4 @@ package "ATS - Código y Persistencia" {
 @enduml
 
 ```
-![Diagrama C4](https://drive.google.com/file/d/1HfXWB4B4_0WrllUhQrzaisxpcV3WFEXi/view?usp=drive_link)
+![Diagrama C4](https://drive.usercontent.google.com/download?id=1HfXWB4B4_0WrllUhQrzaisxpcV3WFEXi&export=view&authuser=0)
