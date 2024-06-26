@@ -1,4 +1,4 @@
-# **SMART PEOPLE LTI** ![Icon](https://example.com/icon.png)
+# **SMART PEOPLE LTI** ![Icon](https://cdn-icons-png.flaticon.com/128/2896/2896418.png)
 
 ## Descripción del Software
 **SMART PEOPLE LTI** es un sistema de seguimiento de candidatos (ATS) innovador que promete revolucionar la eficiencia de los departamentos de recursos humanos, mejorando en un 50% su efectividad en comparación con los sistemas ATS más vendidos en el mercado. Este software facilita la colaboración en tiempo real entre reclutadores y managers, automatiza tareas repetitivas y utiliza inteligencia artificial para optimizar la selección de candidatos.
@@ -178,16 +178,17 @@ C4Component
 ### Nivel 4: Diagrama de Código para "Selección de Candidatos"
 ```mermaid
 C4Component
-    title Selección de Candidatos
+    title Aplicación Web de SMART PEOPLE LTI
 
-    Component(cliente, "Cliente", "Navegador Web", "Usuario del sistema de ATS")
-    Component(aplicacion_web, "Aplicación Web", "Django", "Maneja la lógica de negocio para la selección de candidatos")
-    Component(api_rest, "API REST", "Django REST Framework", "Provee servicios REST para la selección de candidatos")
-    Component(base_datos, "Base de Datos", "PostgreSQL", "Almacena datos de candidatos y empleos")
-    Component(ia_modulo, "Módulo de IA", "TensorFlow", "Optimiza la selección de candidatos")
+    Container_Boundary(aplicacion_web, "Aplicación Web") {
+        Component(controller, "Controller", "Django Controller", "Maneja las solicitudes HTTP")
+        Component(service, "Service Layer", "Servicio", "Contiene la lógica de negocio")
+        Component(repository, "Repository", "Repositorio", "Accede a la base de datos")
+        Component(api_rest, "API REST", "Django REST Framework", "Provee servicios REST")
+    }
 
-    Rel(cliente, aplicacion_web, "Usa")
-    Rel(aplicacion_web, api_rest, "Consume")
-    Rel(api_rest, base_datos, "Lee y Escribe")
-    Rel(api_rest, ia_modulo, "Provee Datos")
+    Rel(controller, service, "Llama")
+    Rel(service, repository, "Usa")
+    Rel(repository, base_datos, "Lee y Escribe")
+    Rel(service, api_rest, "Consume")
 ```
