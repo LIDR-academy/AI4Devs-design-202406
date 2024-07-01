@@ -2212,6 +2212,8 @@ Con el diagrama C4 de contexto correcto, ahora necesito el diagrama C4 de conten
 
 # C4: Componentes
 
+Se va a profundizar en el servicio de publicación de ofertas
+
 ## Prompt 1: Pedir diagrama del servicio de gestión de publicación de ofertas
 ```
 Bien, ahora vamos a profundizar en el diagrama C4 de componentes para el servicio de gestión de publicación de ofertas. Puedes identificar los componentes y sus relaciones? El formato debe seguir siendo PlantUML con C4.
@@ -2229,4 +2231,23 @@ El gestor de ofertas interactuará con los demás componentes de forma asíncron
 Puedes ordenar mejor los componentes? 
 Se podría mejorar el orden aún más si agrupamos en un recuadro invisible los controladores para que aparezcan arriba. 
 Arriba deberían aparecer los controladores. Luego los demás servicios
+```
+
+# C4: Código
+
+Se va a profundizar en el componente de publicación de la oferta a un canal.
+
+## Prompt 1: Petición del diagrama
+```
+Vamos a profundizar en el componente de publicación de la oferta a un canal.
+Para ello necesito un diagrama de clases en formato UML usando PlantUML.
+El código, y por tanto la organización de clases, deberá seguir buenas prácticas de diseño y patrones de arquitectura. 
+Se usará Arquitectura Hexagonal, separando la lógica de negocio de la lógica de presentación y de la lógica de persistencia. 
+```
+
+## Prompt 2: Correcciones
+```
+Bien, vamos a corregir 2 cosas:
+1) El punto de entrada no es una petición HTTP si no un mensaje de SNS cuando se publica la oferta para lanzar el caso de uso PublishJobPostingUseCaseImpl.
+2) Además hay interfaces innecesarias. Las interfaces solo deben crearse para abstraerse de lo externo (base de datos, servicios externos). Por lo que no vemos necesario PublicationService ni PublishJobPostingUseCase
 ```

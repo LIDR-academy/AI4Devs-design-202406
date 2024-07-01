@@ -421,8 +421,10 @@ graph TD
 
 A continuación se detalla el diagrama de componentes C4 para el servicio de publicación de ofertas:
 
-![Diagrama de contenedores](resources/C4_componentes_ofertas.png)
+![Diagrama de componentes](resources/C4_componentes_ofertas.png)
 
 ## Diagrama de Código
 
+Se profundiza en el caso de uso "Publicación de oferta en múltiples canales" con un diagrama de código detallado:
 
+![Diagrama de codigo](resources/C4_componentes_ofertas.png)
