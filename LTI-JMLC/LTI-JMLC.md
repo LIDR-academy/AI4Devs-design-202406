@@ -101,7 +101,7 @@ graph TB
 
 # 2️⃣ Casos de uso
 
-![Untitled](resources/Untitled_1.png)
+![Casos de uso principales](resources/1_CU_principales.png)
 
 Este diagrama PlantUML muestra los casos de uso principales organizados en tres subsistemas correspondientes a las funcionalidades clave del ATS. Los casos de uso están listados en orden de importancia dentro de cada subsistema, con los más críticos y de mayor valor en la parte superior.
 
@@ -131,7 +131,7 @@ Esta priorización se basa en el impacto potencial de cada caso de uso en la efi
 
 # 3️⃣ Modelado de datos
 
-![Untitled](resources/Untitled_4.png)
+![Modelo de datos](resources/2_modelo_datos.png)
 
 ## Entidades y Campos
 
@@ -165,7 +165,7 @@ Este modelo de datos asegura que todos los casos de uso descritos en el diagrama
 
 # 4️⃣ Diseño de alto nivel (arquitectura)
 
-![Untitled](resources/Untitled_13.png)
+![Arquitectura alto nivel](resources/3_arquitectura_alto_nivel.png)
 
 
 ## Explicación del Diagrama de Componentes
