@@ -2186,3 +2186,17 @@ Puedes añadir información de tecnologías?
 Además, en el caso de los servicios puedes indicar en la misma caja del servicio que se trata de un Servicio EKS
 También falta el servicio de autenticación (Oauth 2.0 y OpenID connect)
 ```
+
+# C4: Contexto
+
+## Prompt 1: Generar C4 de contexto
+```
+Ahora necesitamos crear un diagrama C4 de contexto. Para ello utilizaremos PlantUML y su modelo C4: https://github.com/plantuml-stdlib/C4-PlantUML
+```
+
+Lo ha generado muy correctamente, con los sistemas externos bien identificados y personas a falta del Administrador:
+
+## Prompt 2: Añadir administrador
+```
+Falta el usuario principal "Administrador", que se encarga de gestionar las integraciones IA y de plataformas
+```

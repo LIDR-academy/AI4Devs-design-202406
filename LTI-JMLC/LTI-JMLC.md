@@ -380,10 +380,7 @@ graph TD
     end
 ```
 
-
-## Explicación del Diagrama de Componentes
-
-Entendido. El diagrama que ha proporcionado es una excelente representación visual de la arquitectura de alto nivel para el sistema ATS. Refleja claramente la estructura y las relaciones entre los diferentes componentes del sistema. Voy a resumir los aspectos clave de esta arquitectura:
+## Descripción de las capas y principales tecnologías
 
 1. Interfaz de Usuario:
     - Aplicación Web para Reclutadores (React.JS)
@@ -409,3 +406,19 @@ Entendido. El diagrama que ha proporcionado es una excelente representación vis
     - Amazon EKS para la orquestación de contenedores
     - Amazon CloudWatch para monitoreo y logs
     - Amazon OpenSearch Service para búsqueda y análisis de logs
+
+# Diagramas C4
+
+## Diagrama de contexto
+
+![Diagrama de Contexto](resources/C4_contexto.png)
+
+## Diagrama de Contenedores
+
+
+## Diagrama de Componentes
+
+
+## Diagrama de Código
+
+
