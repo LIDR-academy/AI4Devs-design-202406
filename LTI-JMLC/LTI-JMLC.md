@@ -419,6 +419,9 @@ graph TD
 
 ## Diagrama de Componentes
 
+A continuación se detalla el diagrama de componentes C4 para el servicio de publicación de ofertas:
+
+![Diagrama de contenedores](resources/C4_componentes_ofertas.png)
 
 ## Diagrama de Código
 

@@ -2090,6 +2090,8 @@ Sigue aplicando buenas prácticas para sistemas escalables.
 
 # Revisión de modelo de datos
 
+**Se ha seguido usando Claude 3.5, empezando un nuevo chat**
+
 ## Prompt: Revisar modelo de datos
 ```
 Hola Claude, como arquitecta de software necesito que revises un modelo de datos para un ATS (Applicant Tracking System).
@@ -2206,4 +2208,25 @@ Falta el usuario principal "Administrador", que se encarga de gestionar las inte
 ## Prompt 1: Pedir diagrama
 ```
 Con el diagrama C4 de contexto correcto, ahora necesito el diagrama C4 de contenedores del Sistema ATS en formato PlantUML
+```
+
+# C4: Componentes
+
+## Prompt 1: Pedir diagrama del servicio de gestión de publicación de ofertas
+```
+Bien, ahora vamos a profundizar en el diagrama C4 de componentes para el servicio de gestión de publicación de ofertas. Puedes identificar los componentes y sus relaciones? El formato debe seguir siendo PlantUML con C4.
+```
+
+## Prompt 2: Pedir algunas correcciones
+```
+Nuestros servicios no se deben considerar externos. Por ejemplo: Amazon SNS, Base de datos RDS, ElastiCache y Amazon S3. Deben ser tratados como contenedores del sistema ATS.
+Las peticiones HTTP se derivarán a varios controladores en función de la acción, no solo a un API Controller. 
+El gestor de ofertas interactuará con los demás componentes de forma asíncrona, usando SNS
+```
+
+## Prompt 3: Revisar el orden de los componentes:
+```
+Puedes ordenar mejor los componentes? 
+Se podría mejorar el orden aún más si agrupamos en un recuadro invisible los controladores para que aparezcan arriba. 
+Arriba deberían aparecer los controladores. Luego los demás servicios
 ```
