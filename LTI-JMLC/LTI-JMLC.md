@@ -415,6 +415,7 @@ graph TD
 
 ## Diagrama de Contenedores
 
+![Diagrama de contenedores](resources/C4_contenedores.png)
 
 ## Diagrama de Componentes
 

@@ -2200,3 +2200,10 @@ Lo ha generado muy correctamente, con los sistemas externos bien identificados y
 ```
 Falta el usuario principal "Administrador", que se encarga de gestionar las integraciones IA y de plataformas
 ```
+
+# C4: Contenedores
+
+## Prompt 1: Pedir diagrama
+```
+Con el diagrama C4 de contexto correcto, ahora necesito el diagrama C4 de contenedores del Sistema ATS en formato PlantUML
+```
