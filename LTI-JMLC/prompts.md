@@ -2086,3 +2086,103 @@ Sigue aplicando buenas prácticas para sistemas escalables.
         - **Prometheus**
 
 ![Untitled](resources/Untitled_13.png)
+
+
+# Revisión de modelo de datos
+
+## Prompt: Revisar modelo de datos
+```
+Hola Claude, como arquitecta de software necesito que revises un modelo de datos para un ATS (Applicant Tracking System).
+Te adjunto la documentación (LTI-JMLC.md) que tenemos hasta el momento donde se describe las funcionalidades básicas, las propuestas de valor, un lean canvas de la propuesta, casos de uso principales y el modelo de datos. 
+
+Puedes comprobar que el modelo de datos soporta todo lo anterior?
+
+Los principales Casos de Uso en formato PlantUML, referenciado como 1_CU_principales.plantuml en el fichero LTI-JMLC.md, es el siguiente:
+...
+
+Modelo de datos actual a revisar en formato PlantUML, referenciado como 2_modelo_datos.plantuml en el documento LTI-JMLC.md es el siguiente:
+...
+```
+
+## Prompt: Revisar relación Oferta-Canal-Integración
+```
+Puedes revisar la relación Oferta (1) - (N) Canal (1) - (N) IntegracionPlataforma?
+Por qué un Canal tiene relación 1-N con IntegraciónPlataforma?
+```
+
+## Prompt: Corrección de varios puntos del modelo de datos
+```
+Puedes revisar los siguientes puntos?
+* El CriterioIA debería afectar al ÁnalisisIA, no directamente a la aplicación. La relación debería ser N-M, puesto que un mismo criterio puede afectar a varios AnalisisIA y un AnalisisIA puede verse afectado por más de un CriterioIA.
+* Los estados de las diferentes tablas debería ser enumerados (por ejemplo, Oferta, Entrevista, Aplicacion, ...)
+* SistemaIA debería tener un nombre para poderlos identificar y un campo de configuración. Por ejemplo, si se trata de SistemaIA "Claude" debería incluir la configuración para conectarse al API
+* La relación SistemaIA - CriterioIA debería ser que un Sistema puede tener N CriterioIA
+* En el Candidato se podría tener un campo JSON con los datos como el CV (una URL), habilidades, etiquetas, ...
+* Estaría bien saber más datos del registro del candidato: fecha, origen (búsqueda manual, búsqueda de IA, registrado, ...)
+```
+
+## Prompt: Revisión manual del modelo de datos:
+```
+He modificado manualmente algunas cosas del modelo de datos. Este será el que utilicemos a partir de ahora:
+...
+```
+
+# Revisión de la arquitectura
+
+## Prompt 1: Revisar arquitectura anterior VS requisitos 
+```
+Ahora vamos a seguir con el diagrama del diseño de la arquitectura a alto nivel. Como arquitecta de software me gustaría que revisases el siguiente diagrama en PlantUML:
+
+Los requisitos de esta arquitectura eran:
+* En este sistema se espera un volumen muy bajo en cuanto a backoffice: 5 reclutadores.
+* En cuanto a usuarios o candidatos se espera unos 50.000 usuarios registrados por ahora.
+* El volumen de ofertas a publicar será de 10 a la semana. 
+* No se espera picos.
+* Se integrará con varias plataformas como LinkedIn a través de sus API pero nosotros no ofreceremos ninguna API expuesta.
+* Debemos cumplir con la regulacíon GDPR de privacidad de datos.
+* Todos los accesos seran autenticados y autorizados, puesto que trabajamos con datos personales.
+* Una vez la aplicación sea cerrada, se podrá archivar su información, siendo procesada primero para su tratamiento en BI.
+* La internacionalización debe estar contemplada desde un principio.
+* La aplicación de los reclutadores y la aplicación de los candidatos seran diferentes, aunque pueden acceder a los mismos servicios a través de un API Gateway
+* Cada servicio debe tener su base de datos
+* La comunicación entre servicios podrá ser síncrona via API o asíncrona via sistema de mensajería
+* Sigue aplicando buenas prácticas para sistemas escalables,
+```
+
+## Prompt 2: Incorporar servicio de caché, propuesto en la anterior respuesta
+```
+Puedes incorporar el servicio de caché (Redis u otro del ecosistema AWS)?
+```
+
+## Prompt 3: Incluir theme o colores para identificar mejor los componentes
+```
+Puedes añadir algun Theme para mostrar los iconos de AWS?
+```
+
+No puede, pero lo simula con CSS 
+
+## Prompt 4: Leyenda
+```
+Puedes revisar el color de los textos? Con estos colores no se ven bien. 
+Además deberíamos incluir una leyenda para saber qué representa cada color.
+```
+
+## Prompt 5: Mejorar legibilidad del diagrama
+```
+Puedes simplificar las flechas? 
+Por ejemplo, si todos los microservicios utilizan "Amazon EKS", basta una flecha desde la caja de Microservicios hacia "Amazon EKS".
+Además, las Bases de datos deberían estar en el mismo contenedor de su microservicio.
+Además, podríamos separar los microservicios en 2 grupos: Servicios orientados a los Reclutadores, y servicios orientados a Candidatos
+```
+
+## Prompt 6: Cambios manuales para ajustar etiquetas y mejorar visiblidad flechas
+```
+He ajustado el nombre de algunas etiquetas manualmente. Este será el diagrama de arquitectura de alto nivel que usaremos:
+```
+
+## Prompt 7: 
+```
+Puedes añadir información de tecnologías?
+Además, en el caso de los servicios puedes indicar en la misma caja del servicio que se trata de un Servicio EKS
+También falta el servicio de autenticación (Oauth 2.0 y OpenID connect)
+```

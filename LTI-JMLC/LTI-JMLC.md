@@ -131,7 +131,141 @@ Esta priorización se basa en el impacto potencial de cada caso de uso en la efi
 
 # 3️⃣ Modelado de datos
 
-![Modelo de datos](resources/2_modelo_datos.png)
+```mermaid
+erDiagram
+    Reclutador ||--o{ Oferta : publica
+    Reclutador ||--o{ Tarea : asigna
+    Oferta ||--o{ Aplicacion : recibe
+    Oferta ||--o{ PublicacionOferta : "se publica en"
+    PublicacionOferta }o--|| Canal : "usa"
+    Canal ||--o{ IntegracionPlataforma : tiene
+    Candidato ||--o{ Aplicacion : aplica
+    Candidato ||--o{ Entrevista : tiene
+    Aplicacion ||--o{ Entrevista : resulta_en
+    Aplicacion ||--o{ Tarea : genera
+    AnalisisIA }o--o{ CriterioIA : "se basa en"
+    SistemaIA ||--o{ CriterioIA : configura
+    Aplicacion ||--|| AnalisisIA : tiene
+    Oferta ||--o{ ComunicacionAutomatizada : genera
+    Aplicacion ||--o{ ComunicacionAutomatizada : genera
+    Reclutador ||--o{ ConfiguracionPersonalizada : tiene
+    Oferta ||--o{ ReporteRendimiento : tiene
+
+    Reclutador {
+        UUID id PK
+        string nombre
+        string email
+        string telefono
+    }
+    Candidato {
+        UUID id PK
+        string nombre
+        string email
+        string telefono
+        string perfilLinkedIn
+        string perfilGitHub
+        json datosAdicionales
+        date fechaRegistro
+        ENUM origenRegistro
+    }
+    Oferta {
+        UUID id PK
+        string titulo
+        string descripcion
+        date fechaPublicacion
+        ENUM estado
+        json requisitos
+    }
+    Aplicacion {
+        UUID id PK
+        UUID ofertaId FK
+        UUID candidatoId FK
+        date fecha
+        ENUM estado
+        float puntuacionIA
+    }
+    PublicacionOferta {
+        UUID id PK
+        UUID ofertaId FK
+        UUID canalId FK
+        date fechaPublicacion
+        ENUM estado
+    }
+    Canal {
+        UUID id PK
+        string nombre
+        string tipo
+    }
+    IntegracionPlataforma {
+        UUID id PK
+        UUID canalId FK
+        ENUM estado
+        json configuracion
+    }
+    CriterioIA {
+        UUID id PK
+        UUID sistemaIAId FK
+        string nombre
+        string descripcion
+        json parametros
+    }
+    Entrevista {
+        UUID id PK
+        UUID aplicacionId FK
+        date fecha
+        time hora
+        string modo
+        ENUM estado
+        json notas
+    }
+    Tarea {
+        UUID id PK
+        UUID reclutadorId FK
+        UUID aplicacionId FK
+        string descripcion
+        ENUM estado
+        date fechaVencimiento
+        ENUM prioridad
+    }
+    ReporteRendimiento {
+        UUID id PK
+        UUID ofertaId FK
+        int numAplicaciones
+        int numSeleccionados
+        int numContratados
+        float tasaConversion
+    }
+    AnalisisIA {
+        UUID id PK
+        UUID aplicacionId FK
+        json resultadoAnalisis
+        float puntuacionTotal
+        date fechaAnalisis
+    }
+    ComunicacionAutomatizada {
+        UUID id PK
+        UUID destinatarioId FK
+        UUID ofertaId FK
+        UUID aplicacionId FK
+        ENUM tipo
+        string contenido
+        date fechaEnvio
+        ENUM estado
+    }
+    ConfiguracionPersonalizada {
+        UUID id PK
+        UUID reclutadorId FK
+        json configuracionUI
+        json configuracionFlujoTrabajo
+    }
+    SistemaIA {
+        UUID id PK
+        string nombre
+        string version
+        date ultimaActualizacion
+        json configuracion
+    }
+```
 
 ## Entidades y Campos
 
@@ -165,40 +299,113 @@ Este modelo de datos asegura que todos los casos de uso descritos en el diagrama
 
 # 4️⃣ Diseño de alto nivel (arquitectura)
 
-![Arquitectura alto nivel](resources/3_arquitectura_alto_nivel.png)
+```mermaid
+graph TD
+    classDef awsGeneral fill:#FF9900,stroke:#232F3E,stroke-width:2px,color:#000000;
+    classDef awsDatabase fill:#3B48CC,stroke:#232F3E,stroke-width:2px,color:#FFFFFF;
+    classDef awsAnalytics fill:#00A86B,stroke:#232F3E,stroke-width:2px,color:#FFFFFF;
+    classDef awsCompute fill:#FF4F8B,stroke:#232F3E,stroke-width:2px,color:#000000;
+    classDef awsStorage fill:#7AA116,stroke:#232F3E,stroke-width:2px,color:#FFFFFF;
+    classDef awsSecurity fill:#D6242D,stroke:#232F3E,stroke-width:2px,color:#FFFFFF;
+
+    A[Aplicación Web Reclutadores<br>React.js]
+    B[Aplicación Web Candidatos<br>React.js]
+    C[AWS API Gateway]:::awsGeneral
+    D[AWS Cognito<br>OAuth 2.0 / OpenID Connect]:::awsSecurity
+
+    subgraph Servicios_orientados_a_Reclutadores["Servicios Reclutadores"]
+        E[Servicio de Publicación<br>EKS - Node.js]:::awsCompute
+        K[(RDS - PostgreSQL)]:::awsDatabase
+        F[Servicio de Integración<br>EKS - Python]:::awsCompute
+        L[(DynamoDB)]:::awsDatabase
+        G[Servicio de Automatización<br>EKS - Java Spring Boot]:::awsCompute
+        M[(RDS - MySQL)]:::awsDatabase
+    end
+
+    subgraph Servicios_orientados_a_Candidatos["Servicios Candidatos"]
+        H[Servicio de Gestión de Candidatos<br>EKS - Node.js]:::awsCompute
+        N[(RDS - PostgreSQL)]:::awsDatabase
+        I[Servicio de Aplicaciones<br>EKS - Python]:::awsCompute
+        O[(DynamoDB)]:::awsDatabase
+        J[Servicio de Entrevistas<br>EKS - Java Spring Boot]:::awsCompute
+        P[(RDS - MySQL)]:::awsDatabase
+    end
+
+    Q[Amazon ElastiCache<br>Redis]:::awsDatabase
+    R[Amazon SQS/SNS]:::awsGeneral
+    S[Amazon S3]:::awsStorage
+    T[Amazon Redshift]:::awsAnalytics
+    U[Amazon EKS<br>Kubernetes]:::awsCompute
+    V[Amazon CloudWatch]:::awsGeneral
+    W[Amazon OpenSearch Service]:::awsAnalytics
+
+    A --> C
+    B --> C
+    C --> D
+    C --> E
+    C --> F
+    C --> G
+    C --> H
+    C --> I
+    C --> J
+
+    E --- K
+    F --- L
+    G --- M
+    H --- N
+    I --- O
+    J --- P
+
+    Servicios_orientados_a_Reclutadores --> Q
+    Servicios_orientados_a_Candidatos --> Q
+    Servicios_orientados_a_Reclutadores --> R
+    Servicios_orientados_a_Candidatos --> R
+    Servicios_orientados_a_Reclutadores --> S
+    Servicios_orientados_a_Candidatos --> S
+    Servicios_orientados_a_Reclutadores --> T
+    Servicios_orientados_a_Candidatos --> T
+    Servicios_orientados_a_Reclutadores --> U
+    Servicios_orientados_a_Candidatos --> U
+
+    U --> V
+    U --> W
+
+    subgraph "Leyenda"
+        Z1[Servicios Generales]:::awsGeneral
+        Z2[Servicios de Base de Datos]:::awsDatabase
+        Z3[Servicios de Análisis]:::awsAnalytics
+        Z4[Servicios de Cómputo]:::awsCompute
+        Z5[Servicios de Almacenamiento]:::awsStorage
+        Z6[Servicios de Seguridad]:::awsSecurity
+    end
+```
 
 
 ## Explicación del Diagrama de Componentes
 
-1. **Aplicación Web de Reclutadores**:
-    - **Frontend**:
-        - **React.js**: Utilizado para la interfaz de usuario.
-    - **Backend**:
-        - **Node.js + Express**: Runtime y framework para manejar las solicitudes HTTP y coordinar las operaciones.
-    - **Servicios**:
-        - **Servicio de Publicación**: Maneja la publicación de ofertas. Tiene su propia base de datos (**Publicación DB**).
-        - **Servicio de Integración**: Gestiona las integraciones con plataformas externas. Tiene su propia base de datos (**Integración DB**).
-        - **Servicio de Automatización**: Gestiona la automatización de tareas y comunicaciones. Tiene su propia base de datos (**Automatización DB**).
-2. **Aplicación para Candidatos**:
-    - **Frontend**:
-        - **React.js**: Utilizado para la interfaz de usuario.
-    - **Backend**:
-        - **Node.js + Express**: Runtime y framework para manejar las solicitudes HTTP y coordinar las operaciones.
-    - **Servicios**:
-        - **Servicio de Gestión de Candidatos**: Implementa lógica para la gestión y análisis de candidatos. Tiene su propia base de datos (**Candidatos DB**).
-        - **Servicio de Aplicaciones**: Maneja las aplicaciones de los candidatos. Tiene su propia base de datos (**Aplicaciones DB**).
-        - **Servicio de Entrevistas**: Gestiona la programación y el seguimiento de entrevistas. Tiene su propia base de datos (**Entrevistas DB**).
-3. **Datos Compartidos**:
-    - **Amazon S3**: Almacenamiento de archivos y documentos.
-    - **Amazon Redshift**: Almacenamiento y análisis de datos para BI.
-4. **Integración**:
-    - **AWS API Gateway**: Puerta de enlace para manejar llamadas a APIs externas.
-    - **Sistema de Mensajería**: Bus de mensajes para la comunicación entre microservicios.
-5. **Seguridad**:
-    - **OAuth 2.0**: Framework de autenticación.
-    - **OpenID Connect**: Capa de identidad para autorización.
-    - **ELK Stack**: Herramientas para registro y monitoreo.
-6. **Infraestructura**:
-    - **AWS Elastic Kubernetes Service**: Servicio de orquestación de contenedores.
-    - **Jenkins**: Herramienta de CI/CD.
-    - **Prometheus**
+Entendido. El diagrama que ha proporcionado es una excelente representación visual de la arquitectura de alto nivel para el sistema ATS. Refleja claramente la estructura y las relaciones entre los diferentes componentes del sistema. Voy a resumir los aspectos clave de esta arquitectura:
+
+1. Interfaz de Usuario:
+    - Aplicación Web para Reclutadores (React.JS)
+    - Aplicación Web para Candidatos (React.JS)
+2. Capa de API y Seguridad:
+    - AWS API Gateway para manejar las solicitudes de los clientes
+    - AWS Cognito para la autenticación y autorización
+3. Microservicios, divididos en dos grupos principales:
+    - Servicios Reclutadores:
+        * Servicio de Publicación (EKS: Node.JS con RDS-PostgreSQL)
+        * Servicio de Integración (EKS: Python con DynamoDB)
+        * Servicio de Automatización (EKS: Spring Boot con RDS-Mysql)
+    - Servicios Candidatos:
+        * Servicio de Gestión de Candidatos (EKS: Node.JS con RDS-PostgreSQL)
+        * Servicio de Aplicaciones (EKS: Python con DynamoDB)
+        * Servicio de Entrevistas (EKS: Spring Boot con RDS-Mysql)
+4. Servicios Compartidos:
+    - Amazon ElastiCache para caché
+    - Amazon SQS/SNS para mensajería
+    - Amazon S3 para almacenamiento de objetos
+    - Amazon Redshift para análisis de datos
+5. Infraestructura y Monitoreo:
+    - Amazon EKS para la orquestación de contenedores
+    - Amazon CloudWatch para monitoreo y logs
+    - Amazon OpenSearch Service para búsqueda y análisis de logs
