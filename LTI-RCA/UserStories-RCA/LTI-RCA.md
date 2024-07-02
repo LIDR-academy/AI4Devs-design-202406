@@ -279,11 +279,6 @@ Este orden refleja las prioridades basadas en el esfuerzo total estimado por el 
 8. **Reportes y Análisis de Reclutamiento**: 21
 9. **Asistente Virtual para Candidatos**: 21
 
-
-# CONCLUSIONES
-
-+ El primer Prompt parece el más adecuado para la priorización ya que está teniendo en cuenta diversos factores y no solamente la complejidad de cada historia de usuario como en el segundo. Sin embargo el calculo de la complejidad parece más completo en el segundo, aunque no ha realizado un sistema de planning poker de manera correcta seguramente ha tenido en cuenta más variables a la hora de calcular la complejidad de la tarea. En el tercer caso creo que ha alucinado o dado respuestas relativamente aleatorias en algún punto o como mínimo el resultado no es el esperado, comenzar con la Base de datos centralizada de candidatos no me parece que fuese lo que más valor fuese a aportar. En cualquier caso creo que debi de haberle dado más contexto o incluso utilizar otro agente que actuase como un usuario de la aplicación u otro stakeholder o definir con más detalle el valor de negocio que se puede aportar.
-
 # PROMPT 3:
 
 Ahora genera los items de trabajo necesarios para las 3 primeras historias de usuario tal como lo haría un equipo de desarrollo durante una Sprint Planning. Si es necesario divide las historias de usuario en tareas técnicas más pequeñas. Ten en cuenta el documento que adjunté al principio de esta conversación en la que se indican arquitectura, modelos de datos y otras partes del diseño técnico de la aplicación.
